@@ -1,0 +1,9 @@
+{
+  "id": "chevereto-image-uploader",
+  "name": "Chevereto Image Uploader",
+  "description": "This plugin uploads the image in your clipboard to chevereto automatically when pasting.",
+  "author": "kkzzhizhou",
+  "isDesktopOnly": true,
+  "minAppVersion": "0.11.0",
+  "version": "1.0.0"
+}
