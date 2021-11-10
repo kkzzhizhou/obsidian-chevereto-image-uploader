@@ -15,10 +15,7 @@ jobs:
         node-version: 12
     - run: yarn
     - run: yarn build
-    - name: Upload release
-      uses: yakuhzi/action-release@v1
+    - uses: ncipollo/release-action@v1
       with:
-        file: dist/main.js
-        changelog: dist/manifest.json
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        artifacts: "dist/main.js,dist/package.json"
+        token: ${{ secrets.GITHUB_TOKEN }}
