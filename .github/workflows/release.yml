@@ -17,5 +17,5 @@ jobs:
     - run: yarn build
     - uses: ncipollo/release-action@v1
       with:
-        artifacts: "dist/main.js,dist/package.json"
+        artifacts: "dist/*"
         token: ${{ secrets.GITHUB_TOKEN }}
