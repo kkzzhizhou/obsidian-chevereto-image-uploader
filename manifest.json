@@ -1,6 +1,6 @@
 {
-  "id": "chevereto-image-uploader",
-  "name": "Chevereto Image Uploader",
+  "id": "obsidian-chevereto-image-uploader",
+  "name": "Obsidian Chevereto Image Uploader",
   "description": "This plugin uploads the image in your clipboard to chevereto automatically when pasting.",
   "author": "kkzzhizhou",
   "isDesktopOnly": true,

@@ -1,5 +1,5 @@
 {
-  "name": "chevereto-image-uploader",
+  "name": "obsidian-chevereto-image-uploader",
   "version": "1.0.0",
   "description": "This plugin uploads images in your clipboard to chevereto.",
   "main": "lib/main.js",

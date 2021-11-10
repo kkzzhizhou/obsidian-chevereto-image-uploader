@@ -1,4 +1,4 @@
-# Chevereto Image Uploader
+# Obsidian Chevereto Image Uploader
 
 This plugin could resize(optional) and upload the image in your clipboard to chevereto when pasting.
 
