@@ -1,6 +1,6 @@
 {
   "name": "chevereto-image-uploader",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "This plugin uploads images in your clipboard to chevereto.",
   "main": "lib/main.js",
   "license": "MIT",
