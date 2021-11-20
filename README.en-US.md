@@ -13,26 +13,24 @@
 </p>
 
 
-## 国际化
+## Internationalization
 
 [简体中文](README.md) | [English](README.en-US.md)
 
+# Obsidian Chevereto Image Uploader
 
-## 介绍
+This plugin could resize(optional) and upload the image in your clipboard to chevereto when pasting.
 
-此插件能够将剪贴板的图片在粘贴到Obsidian时上传至chevereto，并支持调整图像大小。
+## Getting started
 
-## 新手入门
+### Settings
 
-### 设置
+1. Api Endpoint: the Endpoint of the image hosting api.
+2. Chevereto API Token: the API token of the chevereto.
+3. Enable Resize: whether resizing images before uploading.
+4. Max Width: images that wider than this will be resized resized by the natural aspect ratio.
 
-1. Api Endpoint: Chevereto API链接
-2. Chevereto API Token: Chevereto API令牌
-3. Enable Resize: 是否开启上传前大小调整
-4. Max Width: 调整最大宽度
-
-## 特别感谢
-
+## Thanks
 1. [obsidian-imgur-plugin](https://github.com/gavvvr/obsidian-imgur-plugin)
 2. [create-obsidian-plugin](https://www.npmjs.com/package/create-obsidian-plugin)
 3. [obsidian-image-uploader](https://github.com/Creling/obsidian-image-uploader)
