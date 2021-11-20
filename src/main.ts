@@ -68,7 +68,7 @@ export default class ImageUploader extends Plugin {
       const originalPasterHandler = this.backupOriginalHandlers(cm);
       cm._handlers.paste[0] = async (_: any, e: ClipboardEvent) => {
         const { files } = e.clipboardData;
-        console.log(files)
+        // console.log(files)
         if (files.length == 0 || !files[0].type.startsWith("image")) {
           originalPasterHandler.paste(_, e)
         }
@@ -101,7 +101,7 @@ export default class ImageUploader extends Plugin {
                 this.replaceText(this.getEditor(), pastePlaceText, imgMarkdownText)
               }, err => {
                 new Notice(err, 5000)
-                console.log(err)
+                // console.log(err)
                 const dataTransfer = new DataTransfer();
                 dataTransfer.items.add(file);
                 const newEvt = new ClipboardEvent("paste", {
@@ -134,7 +134,7 @@ export default class ImageUploader extends Plugin {
   }
 
   async onload(): Promise<void> {
-    console.log("loading Image Uploader");
+    // console.log("loading Image Uploader");
     await this.loadSettings();
     this.setupPasteHandler()
     this.addSettingTab(new ImageUploaderSettingTab(this.app, this));
@@ -144,7 +144,7 @@ export default class ImageUploader extends Plugin {
     this.cmAndHandlersMap.forEach((hander, cm) => {
       (cm as any)._handlers.paste[0] = hander.paste;
     })
-    console.log("unloading Image Uploader");
+    // console.log("unloading Image Uploader");
 
   }
 
