@@ -8,7 +8,7 @@
   <a href="https://github.com/kkzzhizhou/obsidian-chevereto-image-uploader/blob/main/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/kkzzhizhou/obsidian-chevereto-image-uploader?style=flat-square"/></a>
   <a href="https://github.com/kkzzhizhou/obsidian-chevereto-image-uploader"><img alt="GitHub" src="https://img.shields.io/badge/Readme--Style-standard--repository-brightgreen?style=flat-square&color=f83500"/></a>
   <a href="https://github.com/kkzzhizhou/obsidian-chevereto-image-uploader"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/kkzzhizhou/obsidian-chevereto-image-uploader?style=flat-square"/></a>
-  <a href="https://github.com/misitebao"><img alt="GitHub user" src="https://img.shields.io/badge/author-misitebao-brightgreen?style=flat-square"/></a>
+  <a href="https://github.com/kkzzhizhou"><img alt="GitHub user" src="https://img.shields.io/badge/author-kkzzhizhou-brightgreen?style=flat-square"/></a>
   <a href="https://gitter.im/kkzzhizhou/obsidian-chevereto-image-uploader"><img alt="Gitter" src="https://img.shields.io/gitter/room/kkzzhizhou/obsidian-chevereto-image-uploader?style=flat-square&color=4ab494"/></a>
 </p>
 
