@@ -39,12 +39,14 @@ export default class ImageUploader extends Plugin {
   settings: ImageUploaderSettings;
 
   setupPasteHandler(): void {
+    if (!this.settings.apiEndpoint || !this.settings.token) {
+      new Notice("Chevereto Image Uploader: Please check the chevereto settings.");
+      return
+    }
     this.registerEvent(this.app.workspace.on('editor-paste', async (evt: ClipboardEvent, editor: Editor) => {
       const { files } = evt.clipboardData;
       // console.log(files)
-      if (files.length == 0 || files[0].type.startsWith("text")) {
-        return
-      } else if (this.settings.apiEndpoint && this.settings.token) {
+      if (files.length == 0 || files[0].type.startsWith("image")) {
         for (let file of files) {
           evt.preventDefault();
           const randomString = (Math.random() * 10086).toString(36).substr(0, 8)
@@ -59,7 +61,6 @@ export default class ImageUploader extends Plugin {
                 error: reject,
               })
             })
-
             file = compressedFile as File
           }
           const params = new URLSearchParams();
@@ -77,9 +78,6 @@ export default class ImageUploader extends Plugin {
               console.log(err)
             })
         }
-      }
-      else {
-        new Notice("Chevereto Image Uploader: Please check the chevereto settings.");
       }
     }))
   }
