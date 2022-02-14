@@ -101,15 +101,15 @@ export default class ImageUploader extends Plugin {
   }
 
   async onload(): Promise<void> {
-    console.log("loading Image Uploader");
+    // console.log("loading Image Uploader");
     await this.loadSettings();
     this.setupPasteHandler()
     this.addSettingTab(new ImageUploaderSettingTab(this.app, this));
   }
 
-  onunload(): void {
-    console.log("unloading Image Uploader");
-  }
+  // onunload(): void {
+  //   console.log("unloading Image Uploader");
+  // }
 
   async loadSettings(): Promise<void> {
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
