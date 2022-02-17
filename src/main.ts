@@ -45,38 +45,42 @@ export default class ImageUploader extends Plugin {
     }
     this.registerEvent(this.app.workspace.on('editor-paste', async (evt: ClipboardEvent, editor: Editor) => {
       const { files } = evt.clipboardData;
-      // console.log(files)
-      if (files.length == 0 || files[0].type.startsWith("image")) {
+      console.log(files)
+      console.log(files.length)
+      if (files.length != 0 && files[0].type.startsWith("image")) {
+        evt.preventDefault();
         for (let file of files) {
-          evt.preventDefault();
-          const randomString = (Math.random() * 10086).toString(36).substr(0, 8)
-          const pastePlaceText = `![uploading...](${randomString})\n`
-          editor.replaceSelection(pastePlaceText)
-          const maxWidth = this.settings.maxWidth
-          if (this.settings.enableResize) {
-            const compressedFile = await new Promise((resolve, reject) => {
-              new Compressor(file, {
-                maxWidth: maxWidth,
-                success: resolve,
-                error: reject,
+          if (file.type.startsWith("image")) {
+            const randomString = (Math.random() * 10086).toString(36).substr(0, 8)
+            const pastePlaceText = `![uploading...](${randomString})\n`
+            editor.replaceSelection(pastePlaceText)
+            const maxWidth = this.settings.maxWidth
+            if (this.settings.enableResize) {
+              const compressedFile = await new Promise((resolve, reject) => {
+                new Compressor(file, {
+                  maxWidth: maxWidth,
+                  success: resolve,
+                  error: reject,
+                })
               })
-            })
-            file = compressedFile as File
+              file = compressedFile as File
+            }
+            const params = new URLSearchParams();
+            params.append('key', this.settings.token);
+            let dataURL = await readFileAsDataURL(file)
+            const source = JSON.stringify(dataURL).split(',')[1].split('"')[0]
+            params.append('source', source)
+            axios.post(this.settings.apiEndpoint, params)
+              .then(res => {
+                const url = objectPath.get(res.data, 'image.url')
+                const imgMarkdownText = `![](${url})`
+                this.replaceText(editor, pastePlaceText, imgMarkdownText)
+              }, err => {
+                new Notice(err, 5000)
+                console.log(err)
+              })
           }
-          const params = new URLSearchParams();
-          params.append('key', this.settings.token);
-          let dataURL = await readFileAsDataURL(file)
-          const source = JSON.stringify(dataURL).split(',')[1].split('"')[0]
-          params.append('source', source)
-          axios.post(this.settings.apiEndpoint, params)
-            .then(res => {
-              const url = objectPath.get(res.data, 'image.url')
-              const imgMarkdownText = `![](${url})`
-              this.replaceText(editor, pastePlaceText, imgMarkdownText)
-            }, err => {
-              new Notice(err, 5000)
-              console.log(err)
-            })
+
         }
       }
     }))
@@ -86,9 +90,8 @@ export default class ImageUploader extends Plugin {
   // Function to replace text
   private replaceText(editor: Editor, target: string, replacement: string): void {
     target = target.trim()
-    const lines = editor.getValue().split("\n");
-    for (let i = 0; i < lines.length; i++) {
-      const ch = lines[i].indexOf(target)
+    for (let i = 0; i < editor.lineCount(); i++) {
+      const ch = editor.getLine(i).indexOf(target)
       if (ch !== -1) {
         const from = { line: i, ch };
         const to = { line: i, ch: ch + target.length };
